@@ -1,0 +1,65 @@
+{
+    "Monday": {
+        "Monday_selected": null,
+        "Monday_open_hh": "09",
+        "Monday_open_mm": "15",
+        "Monday_open_am_pm": "AM",
+        "Monday_close_hh": "08",
+        "Monday_close_mm": "00",
+        "Monday_close_am_pm": "AM"
+    },
+    "Tuesday": {
+        "Tuesday_selected": null,
+        "Tuesday_open_hh": "09",
+        "Tuesday_open_mm": "00",
+        "Tuesday_open_am_pm": "AM",
+        "Tuesday_close_hh": "08",
+        "Tuesday_close_mm": "00",
+        "Tuesday_close_am_pm": "AM"
+    },
+    "Wednesday": {
+        "Wednesday_selected": null,
+        "Wednesday_open_hh": "09",
+        "Wednesday_open_mm": "00",
+        "Wednesday_open_am_pm": "AM",
+        "Wednesday_close_hh": "08",
+        "Wednesday_close_mm": "00",
+        "Wednesday_close_am_pm": "AM"
+    },
+    "Thusday": {
+        "Thusday_selected": null,
+        "Thusday_open_hh": "09",
+        "Thusday_open_mm": "00",
+        "Thusday_open_am_pm": "AM",
+        "Thusday_close_hh": "08",
+        "Thusday_close_mm": "00",
+        "Thusday_close_am_pm": "AM"
+    },
+    "Friday": {
+        "Friday_selected": null,
+        "Friday_open_hh": "09",
+        "Friday_open_mm": "00",
+        "Friday_open_am_pm": "AM",
+        "Friday_close_hh": "08",
+        "Friday_close_mm": "00",
+        "Friday_close_am_pm": "AM"
+    },
+    "Saturday": {
+        "Saturday_selected": null,
+        "Saturday_open_hh": "09",
+        "Saturday_open_mm": "00",
+        "Saturday_open_am_pm": "AM",
+        "Saturday_close_hh": "08",
+        "Saturday_close_mm": "00",
+        "Saturday_close_am_pm": "AM"
+    },
+    "Sunday": {
+        "Sunday_selected": null,
+        "Sunday_open_hh": "09",
+        "Sunday_open_mm": "00",
+        "Sunday_open_am_pm": "AM",
+        "Sunday_close_hh": "08",
+        "Sunday_close_mm": "00",
+        "Sunday_close_am_pm": "AM"
+    }
+}

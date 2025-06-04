@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>car quest</title>
+    <meta name="description" content="car, bike &amp; parts buy sell site." />
+    <meta name="keywords" content="car, bike, parts, buy, sell" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/static/assets/images/appsInception-logo.png"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="custom-header">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-6">
+            <a href="index.html" class="brand-logo" id="currentProject">
+              Car Quest
+            </a>
+          </div>
+          <div class="col-6 text-end mobile-menu-wrapper">
+            <a
+              href="javascript:void(0)"
+              onclick="handleClickOpenMenu()"
+              class="mobile_menu_bar"
+            >
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Left Sidebar -->
+        <aside class="col-lg-3 col-12 left-sidebar">
+          <div id="sidebar">
+            <h3>Introduction</h3>
+            <ul>
+              <li>
+                <a class="active" href="installation.html">Installation</a>
+              </li>
+            </ul>
+            <h3>Admin</h3>
+            <ul>
+              <li><a href="admin-panel.html" class="">Admin Panel</a></li>
+            </ul>
+            <h3>User</h3>
+            <ul>
+              <li><a href="user-panel.html">User Panel</a></li>
+            </ul>
+          </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="col-lg-6 col-12 main-content">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" id="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/project/car-quest/">Car Quest</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Introduction
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Installation
+              </li>
+            </ol>
+          </nav>
+          <div class="content">
+            <div id="content">
+              <h2 id="system">System Requirements</h2>
+
+              <p>
+                Before proceeding with the installation, ensure that your
+                environment meets the following prerequisites:
+              </p>
+
+              <ul>
+                <li><strong>PHP</strong>: Version 8.0&nbsp;or higher</li>
+                <li>
+                  <strong>Database:</strong> MySQL (ensure the required database
+                  system is installed and running).
+                </li>
+                <li>
+                  <strong>Email Configuration:</strong> SMTP server setup is
+                  required for email notifications.
+                </li>
+                <li>
+                  <strong>Web Server:</strong> Nginx or Apache must be installed
+                  and configured.
+                </li>
+              </ul>
+
+              <h2 id="backend">Backend Installation</h2>
+
+              <ul>
+                <li>
+                  Navigate to the Project Directory: Change to your web root
+                  directory where the backend will be installed.
+                </li>
+              </ul>
+
+              <p>
+                <strong
+                  >&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cd
+                  /var/www/</strong
+                >
+              </p>
+
+              <ul>
+                <li>
+                  Create and Navigate to the Project Folder:
+                  <ul>
+                    <li>
+                      <strong>sudo mkdir your_project_folder&nbsp;</strong>
+                    </li>
+                    <li><strong>cd your_project_folder</strong></li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Upload&nbsp;Code: </strong>Upload your Laravel backend
+                  code to the <strong>your_project_folder</strong> directory
+                  using FTP, SCP, or any other file transfer method. Make sure
+                  all files are placed correctly in this folder.
+                </li>
+                <li>
+                  <strong>Install Composer Dependencies: </strong>Once the
+                  backend code is uploaded, install the necessary dependencies
+                  using Composer.
+                  <ul>
+                    <li><strong>composer install</strong></li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Copy the&nbsp;Configuration File: </strong>Copy the
+                  applicaiton/config/config.example.php&nbsp;environment file to
+                  applicaiton/config/config.php.
+                  <ul>
+                    <li>
+                      <strong>cp </strong
+                      >applicaiton/config/config.example.php<strong>&nbsp;</strong>applicaiton/config/config.php
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Copy the&nbsp;Database File: </strong>Copy the
+                  applicaiton/config/database.example.php&nbsp;environment file
+                  to applicaiton/config/database.php.
+                  <ul>
+                    <li>
+                      <strong>cp </strong
+                      >applicaiton/config/database.example.php<strong>&nbsp;</strong>applicaiton/config/database.php
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+
+              <p>&nbsp;</p>
+
+              <ul>
+                <li>
+                  <strong>Edit config.php</strong><strong>&nbsp;File:</strong>
+                </li>
+              </ul>
+
+              <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Open the
+                <strong>.env</strong> file and configure the following sections:
+              </p>
+
+              <p>&nbsp;</p>
+
+              <ul>
+                <li><strong>For Base url:</strong></li>
+              </ul>
+
+              <pre>
+     $config['base_url'] = 'https://example.com/';
+
+</pre
+              >
+
+              <p>&nbsp;</p>
+
+              <ul>
+                <li><strong>For Recaptcha:</strong></li>
+              </ul>
+
+              <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$config['site_key'] =
+                '';
+              </p>
+
+              <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$config['secret_key'] =
+                '';
+              </p>
+
+              <ul>
+                <li><strong>For SMTP MAIL&nbsp;</strong></li>
+              </ul>
+
+              <pre>
+    $config['email_host']               = '';
+    $config['email_username']           = '';
+    $config['email_password']           = '';
+    $config['email_port']               = '';
+    $config['from_name']                = '';
+    $config['email_from']               = '';</pre
+              >
+
+              <p>&nbsp;</p>
+
+              <ul>
+                <li>
+                  <strong>Edit database.php</strong><strong>&nbsp;File:</strong
+                  ><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong>
+                </li>
+              </ul>
+
+              <pre>
+   'hostname' =&gt; 'localhost',
+   'username' =&gt; 'username',
+   'password' =&gt; 'password',
+   'database' =&gt; 'database',
+
+</pre
+              >
+
+              <ul>
+                <li>
+                  <strong
+                    >Create Uploads Folder and Session Folder (If not
+                    exists):</strong
+                  >
+                </li>
+              </ul>
+
+              <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mkdir uploads<br />
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mkdir
+                application/sessions
+              </p>
+
+              <ul>
+                <li><strong>Import Database:</strong></li>
+              </ul>
+
+              <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Import carquest.sql in
+                your database
+              </p>
+
+              <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong
+                  >using terminal</strong
+                >:
+                <em
+                  >mysql -u user_name -p database_name
+                  &lt;&nbsp;carquest.sql</em
+                >
+              </p>
+
+              <h2 id="nginx-backend">Nginx Configuration:</h2>
+
+              <p>
+                If you are using <strong>Nginx</strong> as your web server,
+                configure it to proxy requests to your backend:
+              </p>
+
+              <ol>
+                <li>
+                  <strong>Create Nginx Configuration File:</strong><br />
+                  Open the Nginx configuration file for your backend:
+                  <pre><code>sudo nano /etc/nginx/conf.d/backend.conf</code></pre>
+                </li>
+                <li>
+                  <strong>Paste the Following Configuration:</strong><br />
+                  Paste the following configuration in the file, replacing
+                  <code>api.example.com</code> with your domain or IP address:
+                  <pre><code>server {
+    server_name example.com;
+    root /var/www/example.com/;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.php;
+
+    charset utf-8;
+
+&nbsp; &nbsp; location / {
+&nbsp; &nbsp; &nbsp; &nbsp; try_files $uri $uri/ /index.php?$query_string;
+&nbsp; &nbsp; }
+
+&nbsp; &nbsp; location ~ \.php$ {
+&nbsp; &nbsp; &nbsp; &nbsp; include snippets/fastcgi-php.conf;
+&nbsp; &nbsp; &nbsp; &nbsp; fastcgi_pass unix:/var/run/php/php8.1-fpm.sock; # Adjust PHP version if needed
+&nbsp; &nbsp; &nbsp; &nbsp; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+&nbsp; &nbsp; &nbsp; &nbsp; include fastcgi_params;
+&nbsp; &nbsp; }
+
+&nbsp; &nbsp; location ~ /\.ht {
+&nbsp; &nbsp; &nbsp; &nbsp; deny all;
+&nbsp; &nbsp; }
+
+    error_page 404 /index.php;
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}</code></pre>
+                </li>
+                <li>
+                  <strong>Test and Restart Nginx:</strong><br />
+                  After saving the configuration, test Nginx configuration and
+                  restart it:
+                  <pre><code>sudo nginx -t</code></pre>
+
+                  <pre><code>sudo systemctl restart nginx</code></pre>
+                </li>
+              </ol>
+
+              <h2 id="additional">Additional Configuration:</h2>
+
+              <ul>
+                <li>
+                  <strong>Email Configuration:</strong> Ensure that your SMTP
+                  credentials are correctly set in the <code>.env</code> file
+                  for email functionality to work.
+                </li>
+                <li>
+                  <strong>Firewall Configuration:</strong> Ensure that the
+                  necessary ports (usually 80, 443, 8000, 3000) are open in your
+                  firewall for both frontend and backend to function
+                  properly.<br />
+                  &nbsp;
+                </li>
+              </ul>
+
+              <p>&nbsp;</p>
+
+              <h2 id="ssl">Obtain an SSL Certificate:</h2>
+
+              <p>You can obtain an SSL certificate from:</p>
+
+              <ul>
+                <li><strong>Let's Encrypt (Free)</strong></li>
+                <li><strong>Commercial SSL Providers (Paid)</strong></li>
+              </ul>
+
+              <p>
+                For <strong>Let's Encrypt</strong>, install
+                <strong>Certbot</strong> and generate a free SSL certificate.
+              </p>
+
+              <ol>
+                <li>
+                  <p>&nbsp;sudo snap install --classic certbot</p>
+                </li>
+                <li>
+                  <p>&nbsp;sudo certbot --nginx</p>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </main>
+        <!-- Right Sidebar -->
+        <aside class="col-lg-3 right-sidebar active">
+          <div class="sidebar-heading">Contents</div>
+          <nav class="nav flex-column" id="right_sidebar_nav">
+            <a class="nav-link" href="#system">System Requirements</a>
+            <a class="nav-link" href="#backend">Backend Installation</a>
+            <a class="nav-link" href="#nginx-backend">Nginx Configuration:</a>
+            <a class="nav-link" href="#additional">Additional Configuration:</a>
+            <a class="nav-link" href="#ssl">Obtain an SSL Certificate:</a>
+          </nav>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="custom-footer">
+      <div class="container text-center">
+        <p>&copy; 2025 AppsInception. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

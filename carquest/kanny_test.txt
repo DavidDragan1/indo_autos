@@ -1,0 +1,15 @@
+$('.sidebar-menu a').on('click', function( e){
+	e.preventDefault();
+	var href = $(this).attr('href');	
+	
+	// For change URL 
+	window.history.pushState("object or string", "Title", href  );	
+	
+	// For get page inside Content 
+	$('#ajaxContent').load ( href );	
+	
+	// For Active menu 
+	$('.sidebar-menu li').removeClass('active');
+	$(this).parent().addClass('active');			
+	return false;
+});

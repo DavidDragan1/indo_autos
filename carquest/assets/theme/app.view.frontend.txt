@@ -1,0 +1,4 @@
+
+CMS Page  & layout path 
+..\application\views\frontend\
+..\application\views\frontend\layout\

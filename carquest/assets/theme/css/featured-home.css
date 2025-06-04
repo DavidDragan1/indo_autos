@@ -1,0 +1,165 @@
+.bx-wrapper .bx-viewport {
+    background: none;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    border: 0;
+}
+#featuredListing { 
+    width:100px; 
+    height:220px; 
+    overfollow:hidden; 
+}
+
+#featuredListing a:hover { 
+    text-decoration: none;
+}
+
+.bx-controls-direction {
+    margin: 0 auto;
+    width: 100px;
+}
+.bx-prev {
+    margin-right: 10px;
+}
+.bx-pager.bx-default-pager {
+    display: none;
+}
+.featurethumb p {
+    color: #ff5856;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+.featurethumb h3 {
+    color: #333333;
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.featureTitle{
+    color: #333333;
+    font-family: open sans;
+    font-size: 35px;
+    font-weight: normal;
+    margin-bottom: 37px;
+    margin-top: 37px;
+}
+
+.thumbImg {
+    width: 100%;    
+    height:180px;
+    overflow:hidden;
+    background: #EEE;
+    vertical-align: middle;
+}
+
+
+
+.thumbImg img {
+    width:100%;
+    height:auto;    
+    border:0;
+
+}
+
+
+.thumbnail:hover {
+    background-color:#f5941f !important;
+    text-decoration: none;
+}
+.sliderbox .bx-wrapper .bx-prev {
+  left: 3px;
+}
+
+.thumbnail:hover .text-center{
+    color:#FFF;
+    text-decoration: none;
+}
+.thumbnail {
+    border-radius: 0;
+    padding: 0;
+}
+.newpadding{
+    padding:2px !important;    
+}
+
+.sliderbox {position:relative; padding-left: 3px; }
+
+.list-group-item {
+    margin-bottom:0;
+    border: 0;    
+    border-bottom: 1px solid #ddd;
+    font-size: 11pt;
+    padding: 12px 15px;
+} 
+
+
+.list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    
+}
+.list-group-item:last-child {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 0;
+}
+.list-group {
+ margin-bottom: 0;    
+}
+
+.list-group span { color: #c3c3c3; }
+
+/*
+.sliderbox .bx-prev {
+    background-image: url("../images/arrowleft.png");
+    background-repeat: no-repeat;
+    font-size: 0;
+    height: 84px;
+    left: -6%;
+    position: absolute;
+    top: 53%;
+    width: 42px;
+}
+.sliderbox .bx-next {
+    background-image: url("../images/arrowright.png");
+    background-repeat: no-repeat;
+    font-size: 0;
+    height: 84px;
+    position: absolute;
+    right: -6%;
+    top: 53%;
+    width: 42px;
+}
+*/
+
+@media only screen and (max-width: 767px) {
+
+.featurethumb p {
+  font-size: 11px;
+}
+.thumbImg {
+  max-height: 62px;
+  min-height: 62px;
+}
+
+}
+@media only screen and (max-width: 479px) {
+.thumbnail .caption {
+  min-height: 100px;
+}
+.slideshow .carousel-indicators {
+  bottom: -176px;
+}
+.slideshow .carousel-indicators li {
+  display: inline-block;
+  height: 79px;
+}
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+.thumbnail .caption {
+  min-height: 70px;
+
+}
+}

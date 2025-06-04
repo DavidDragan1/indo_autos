@@ -1,0 +1,49 @@
+/*************** SCROLLBAR BASE CSS ***************/
+.scroll-wrapper {
+    overflow: hidden !important;
+    padding: 0 0 10px !important;
+    position: relative;
+}
+
+.scroll-wrapper>.scroll-content {
+    border: none !important;
+    box-sizing: content-box !important;
+    height: auto;
+    left: 0;
+    margin: 0;
+    max-height: none;
+    max-width: none !important;
+    overflow: scroll !important;
+    padding: 0;
+    position: relative !important;
+    top: 0;
+    width: auto !important;
+}
+
+.scroll-wrapper>.scroll-content::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+}
+
+.scroll-wrapper.scroll--rtl {
+    direction: rtl;
+}
+
+.scroll-scrolly_visible {
+    position: absolute;
+}
+
+.scroll-element.scroll-y.scroll-scrolly_visible {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    width: 7px;
+    background: #fafafa;
+    top: 0;
+}
+
+.scroll-element.scroll-y.scroll-scrolly_visible .scroll-bar {
+    background: #e5e5e5;
+    width: 100%;
+    position: absolute;
+}

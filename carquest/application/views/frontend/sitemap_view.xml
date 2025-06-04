@@ -1,0 +1,11 @@
+<?php $tz = new \Carbon\CarbonTimeZone(1); ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <?php foreach ($urls as $key => $item)  { ?>
+    <url>
+        <loc><?php echo $item ?></loc>
+        <priority><?php echo isset($priority[$key]) ? $priority[$key] : "0.6"; ?></priority>
+        <lastmod><?php echo isset($time[$key]) ? $time[$key] : Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+    <?php } ?>
+
+</urlset>

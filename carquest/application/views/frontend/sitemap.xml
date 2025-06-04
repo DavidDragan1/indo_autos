@@ -1,0 +1,65 @@
+<?php $tz = new \Carbon\CarbonTimeZone(1); ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc><?php echo base_url() . "sitemap/general.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+    <url>
+        <loc><?php echo base_url() . "sitemap/seller.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+    <url>
+        <loc><?php echo base_url() . "sitemap/insurance-provider.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+    <url>
+        <loc><?php echo base_url() . "sitemap/loan-provider.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+    <url>
+        <loc><?php echo base_url() . "sitemap/mechanic.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+    <url>
+        <loc><?php echo base_url() . "sitemap/driver.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+
+    <url>
+        <loc><?php echo base_url() . "sitemap/shipping-agent.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+
+    <url>
+        <loc><?php echo base_url() . "sitemap/clearing-agent.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+
+    <url>
+        <loc><?php echo base_url() . "sitemap/verifier.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+
+    <?php foreach($posts as $item) { ?>
+        <url>
+            <loc><?php echo base_url() . 'sitemap/post-' . $item->post_date . ".xml" ?></loc>
+            <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+        </url>
+
+    <url>
+            <loc><?php echo base_url() . 'sitemap/insurance-' . $item->post_date . ".xml" ?></loc>
+            <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+        </url>
+
+    <url>
+            <loc><?php echo base_url() . 'sitemap/loan-' . $item->post_date . ".xml" ?></loc>
+            <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+        </url>
+    <url>
+        <loc><?php echo base_url() . "sitemap/tags.xml" ?></loc>
+        <lastmod><?php echo Carbon\Carbon::now()->format('Y-m-d\TH:i:s') . $tz->toOffsetName(); ?></lastmod>
+    </url>
+    <?php } ?>
+
+</urlset>

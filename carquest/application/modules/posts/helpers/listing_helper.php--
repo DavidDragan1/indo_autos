@@ -1,0 +1,333 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+function getCategoryNameById($id) {
+    $CI = & get_instance();
+    $CI->load->database();
+    $row = $CI->db->select('category_name')->get_where('event_category', ['id' => $id])->row();
+    if ($row) {
+        return $row->category_name;
+    } else {
+        return 'Unknown Category';
+    }
+}
+
+function getUserName($id = 0) {
+    if ($id) {
+        $user = getUserById($id);
+        if ($user) {
+            return $user->first_name . ' ' . $user->last_name;
+        } else {
+            return 'Unknown';
+        }
+    }
+}
+
+function getUserById($id = null) {
+    $CI = & get_instance();
+    $user_id = intval($id);
+
+    return $user = $CI->db->select('*')->get_where('users', ['id' => $id])->row();
+}
+
+function getPostId($id) {
+    $CI = & get_instance();
+    $CI->load->database();
+    $row = $CI->db->query("SELECT id FROM event_listing WHERE id='$id'")->row();
+    return $row->id;
+}
+
+function getPostSlug($id) {
+    $CI = & get_instance();
+    $CI->load->database();
+    $row = $CI->db->query("SELECT slug FROM event_listing WHERE id='$id'")->row();
+    return $row->slug;
+}
+
+function postUpdateTabs($active = '', $id = 0, $disable = false) {
+    $tabs = [
+        'general_info' => '<i class="fa fa-info"></i> General Info',
+        'service_info' => '<i class="fa fa-info"></i> Service Info',
+        'general_photo' => '<i class="fa fa-picture-o"></i> General Photo',
+        'featured_photo' => '<i class="fa fa-picture-o"></i> Featured Photo',
+        'video_upload' => '<i class="fa fa-video-camera"></i> Video Upload',
+        'activation_request' => '<i class="fa fa-check"></i> Activation',
+    ];
+
+    $html = '<div class="step_holder">';
+    $html .= '<ul class="steps">';
+    foreach ($tabs as $url => $title) {
+
+        if ($id == 0) {
+            $html .= '<li class="btn btn-default disable">' . $title . '</li>';
+        } else {
+            $html .= '<li';
+            $html .= ($active == $url ) ? ' class="active"' : '';
+            $html .= '><a href="admin/event_listing/' . $url . '/' . $id . '">' . $title . '</a></li>';
+        }
+    }
+
+    if ($id == 0) {
+        $html .= '<li class="btn btn-default disable"><i class="fa fa-search-plus"></i> Preveiw</a></li>';
+    } else {
+        $html .= '<li><a href="vendor/' . getPostSlug($id) . '" target="_blank"><i class="fa fa-search-plus"></i> Preveiw</a></li>';
+    }
+
+    $html .= '</ul>';
+    $html .= '</div>';
+    return $html;
+}
+
+function deadline($post_date, $expire_date = null) {
+    $today = date('Y-m-d', strtotime('+1 day'));
+    $day_limit = dayCalculator($post_date, $expire_date);
+
+    if ($expire_date == null or $expire_date == '0000-00-00') {
+        $age = 'Unknown';
+        $progress = 10;
+    } elseif ($today >= $expire_date) {
+        $age = 'Expird';
+        $progress = 100;
+    } else {
+        $age = dayCalculator($post_date, null);
+        $progress = ($age) ? ceil(( $age / $day_limit ) * 100) : 15;
+        //$progress = ($progress >= 20 ) ? $age : 90;
+    }
+
+    if ($progress >= 80) {
+        $progress_bar = 'progress-bar-danger';
+    } elseif ($progress >= 50) {
+        $progress_bar = 'progress-bar-warning';
+    } else {
+        $progress_bar = 'progress-bar-info';
+    }
+
+
+    $html = '';
+    $html .= '<small> ' . $age . ' / ' . $day_limit . ' days </small>';
+    $html .= '<div class="progress" style="height:8px;">';
+    $html .= '<div class="progress-bar progress-xs ' . $progress_bar . '"
+                    role="progressbar" 
+                    aria-valuenow="40"
+                    aria-valuemin="0" 
+                    aria-valuemax="100" 
+                    style="width:' . $progress . '%">';
+
+    $html .= '</div>';
+    //$html .= '<div class="progress-bar progress-bar-danger" style="width:30%"> 30 days </div>';
+    $html .= '</div>';
+
+    $html .= '<p>';
+    $html .= '<b class="pull-left">' . globalDateFormat($post_date) . '</b>';
+    $html .= '<b class="pull-right">' . globalDateFormat($expire_date) . '</b>';
+    $html .= '</p>';
+    return $html;
+}
+
+function dayCalculator($from = null, $to = null) {
+
+    $to = is_null($to) ? 'now' : $to;
+    if ($from) {
+
+        $from = date('Y-m-d', strtotime($from));
+        $tz = new DateTimeZone('Europe/London');
+        $age = DateTime::createFromFormat('Y-m-d', $from, $tz)
+                ->diff(new DateTime($to, $tz));
+        return $age->days;
+    } else {
+        return 0;
+    }
+}
+
+function bookingCategory($selected = 0) {
+    $cats = [
+        '0' => '--Select--',
+        '1' => 'Hall',
+        '2' => 'Event'
+    ];
+
+    $row = '';
+    foreach ($cats as $key => $option) {
+        $row .= '<option value="' . $key . '"';
+        $row .= ($selected == $key) ? ' selected' : '';
+        $row .= '>' . $option . '</option>';
+    }
+    return $row;
+}
+
+function photoGalleryPhoto($photo = null) {
+    //dd($photo);
+    $photofile = dirname(BASEPATH) . '/uploads/event_photos/' . $photo;
+    if ($photo && file_exists($photofile)) {
+        return '<img class="img-responsive" src="uploads/event_photos/' . $photo . '"/>';
+    } else {
+        return '<img class="img-responsive" src="uploads/no-photo.jpg"/>';
+    }
+}
+
+function getPostFeaturedPhoto($post_id = 0, $size = 'tiny', $is_feature_listing = null, $class = null) {
+    $CI = & get_instance();
+    $id = intval($post_id);
+    $result = $CI->db->select('photo')
+            ->get_where('event_listing_image', ['service_id' => $id, 'featured' => 'Yes'])
+            ->row();
+    //return  $CI->db->last_query();
+
+    $photo = isset($result->photo) ? $result->photo : 'no-photo.jpg';
+
+    if ($is_feature_listing == 'Yes') {
+        $rapper = '<div class="ribbon"><span>Featured </span></div>';
+    } elseif ($is_feature_listing == 'No') {
+        $rapper = '<div class="ribbon"><span class="free">Free Ads </span></div>';
+    } else {
+        $rapper = '';
+    }
+    return $rapper . getPostPhoto($post_id, $photo, $size, $class);
+}
+
+function getPostPhoto($post_id = 0, $photo = null, $size = 'midium', $class = 'thumbnail') {
+    switch ($size) {
+        case 'tiny':
+            $width_height = 'width="150"';
+            break;
+        case 'midium':
+            $width_height = 'width="265"';
+            break;
+        case 'featured':
+            $width_height = 'width="265"';
+            break;
+        default :
+            $width_height = '';
+    }
+
+    $filename = dirname(APPPATH) . '/uploads/event_photos/' . $post_id . '/' . $photo;
+    if ($photo && file_exists($filename)) {
+        return '<img class="' . $class . '" src="uploads/event_photos/' . $post_id . '/' . $photo . '"  ' . $width_height . '>';
+    } else {
+        return '<img class="' . $class . '" src="uploads/event_photos/no-photo.jpg" >';
+    }
+}
+
+function switchListingStatus($status = 'Active') {
+    switch ($status) {
+        case 'Active':
+            $status = ['<i class="fa fa-check-square-o"></i>', 'Active', 'success'];
+            break;
+        case 'Inactive':
+            $status = ['<i class="fa fa-ban"></i>', 'Inactive', 'warning'];
+            break;
+        case 'Pending':
+            $status = ['<i class="fa fa-hourglass-start"></i>', 'Pending', 'info'];
+            break;
+        case 'Sold':
+            $status = ['<i class="fa fa-dollar"></i>', 'Sold', 'danger'];
+            break;
+        default :
+            $status = ['<i class="fa fa-ban"></i>', 'Inactive', 'default'];
+    }
+    return '<span class="label label-' . $status[2] . '">' . $status[0] . ' ' . $status[1] . '</span>';
+}
+
+function getEventPhoto($post_id = 0, $photo = null, $size = 'midium', $class = 'thumbnail') {
+
+    //dd($size);
+    switch ($size) {
+        case 'tiny':
+            $width_height = getPhotoNameBySize($photo, 150);
+            break;
+        case 'small':
+            $width_height = getPhotoNameBySize($photo, 265);
+            ;
+            break;
+        case 'big':
+            $width_height = getPhotoNameBySize($photo, 820);
+            break;
+        default :
+            $width_height = getPhotoNameBySize($photo, 820);
+    }
+    //dd($width_height);
+    $filename = dirname(APPPATH) . '/uploads/event_photos/' . $post_id . '/' . $photo;
+    //dd($filename);
+    if ($photo && file_exists($filename)) {
+        return '<img class="' . $class . '" src="uploads/event_photos/' . $post_id . '/' . $width_height . '">';
+    } else {
+        return '<img class="' . $class . '" src="uploads/event_photos/no-photo.jpg" >';
+    }
+}
+
+function getPhotoNameBySize($string = null, $size = 100) {
+    $split = str_replace('_820', '_' . $size, $string);
+    return $split;
+}
+
+function getPostPackages($service_rate = 0) {
+    $CI = & get_instance();
+    $html = ''; $regular = ''; $featured = '';
+    $packages = $CI->db->order_by('id', 'ASC')->get('packages')->result();
+    foreach ($packages as $package) {
+        if ($package->package_type == 'Featured') {
+            $featured .= '<option value="' . $package->id . '"';
+            $featured .= ( $service_rate == $package->id ) ? ' selected' : '';
+            $featured .= '>' . $package->title . '( ' . $package->duration . ' days)</option>';
+        } else {
+            $regular .= '<option value="' . $package->id . '"';
+            $regular .= ( $service_rate == $package->id ) ? ' selected' : '';
+            $regular .= '>' . $package->title . '( ' . $package->duration . ' days)</option>';
+        }
+    }
+    $html = "<optgroup label='Regular'>$regular</optgroup><optgroup label='Featured'>$featured</optgroup>";
+    return $html;
+}
+
+function getPackagePrice($package_id) {
+    $CI = & get_instance();
+    $package = $CI->db->get_where('packages', ['id' => $package_id])->row();
+    return $package->price;
+}
+
+function getPackageName($package_id){
+    $html =  '';
+    $CI = & get_instance();
+    $package = $CI->db->get_where('packages', ['id' => $package_id])->row();
+    if($package) {
+        $title =  $package->title;
+        $html =  "<p style='margin: 0 0 2px;'><strong>Package Name: </strong> <em>$title</em></p>";
+    } 
+    return $html;
+}
+
+
+function getPackageNameNew($package_id){
+    $html =  '';
+    $CI = & get_instance();
+    $package = $CI->db->get_where('packages', ['id' => $package_id])->row();
+    if($package) {
+        $title =  $package->title;
+        $html =  "<p style='margin: 0 0 2px;'>$title</p>";
+    } 
+    return $html;
+}
+
+
+function listingName($listing_id){
+    $html =  '';
+    $CI = & get_instance();
+    $listing = $CI->db->get_where('event_listing', ['id' => $listing_id])->row();
+    if($listing) {
+        $title =  $listing->service_name;
+        $html =  "<p style='margin: 0 0 2px;'>$title</p>";
+    } 
+    return $html;
+}
+
+function getUserNameByUserId($id) {
+    $CI = &get_instance();
+    $user = $CI->db->select('first_name,last_name')->get_where('users', ['id' => $id ])->row();
+    if($user){
+        return $user->first_name .' '. $user->last_name;
+    } else {
+        return 'Unknown';
+    }    
+}
+

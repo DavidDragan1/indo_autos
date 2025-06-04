@@ -1,0 +1,79 @@
+.ui-widget-content {
+    border: none !important;
+}
+.ui-dialog {
+    background: #fff;
+    border: none;z-index: 9999;
+    box-shadow: 0px 0px 22px 2px #dadada;
+}
+.ui-dialog .ui-dialog-titlebar {
+    padding: 0;
+    border-top: none; border-right: none;    border-radius: 0;
+    border-left: none; border-bottom: 1px solid #e5e5e5;
+}
+.diaLeftSide {
+    width: 70%;
+    background: #f1f2f4;
+    height: 40px;
+    margin-left: 0;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    position: absolute;
+    right: 6px;
+    top: 0;
+    width: 36px;
+    margin: 0;
+    height: 36px;
+}
+.ui-dialog .ui-dialog-content {
+    border: none;
+    padding: 0;
+}
+.vendor_company_details {
+    padding: 20px 8%;
+}
+.vendor_company_details h4 {
+    margin-bottom: 10px;
+}
+.vendor_company_details p {
+    margin-bottom: 5px;
+}
+.ui-dialog .ui-dialog-content {
+    overflow: hidden;
+}
+a.chatButton {
+    cursor: pointer;
+}
+a.chatButton.online .fa { color: rgb(9,174,9); }
+
+
+/* 26.05.2017 Start  */
+
+a.minimize {
+    position: absolute;
+    z-index: 200;
+    right: 50px;cursor: pointer;
+    top: 5px;
+}
+.minmize_bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+}
+.minmize_inner {
+    width: 120px;
+    height: 35px;
+    background: #ff9900;
+    position: relative;cursor: pointer;
+    display: block; color: #fff;
+    z-index: 300;
+}
+/* 26.05.2017 End  */
+
+
+@media(max-width: 600px ){
+	.frontend_chat_left { width: 100%; float: none;}
+	.frontend_chat_right { display: none;}
+}
+

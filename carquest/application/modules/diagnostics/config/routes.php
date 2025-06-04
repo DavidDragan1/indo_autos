@@ -1,0 +1,24 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$route['admin/diagnostics']                  = 'diagnostics';
+$route['admin/diagnostics/deleteQuestionType/(:num)']    = 'diagnostics/deleteQuestionType/$1';
+$route['admin/diagnostics/question-type']['post']  = 'diagnostics/questionType';
+$route['admin/diagnostics/questions']                  = 'diagnostics/viewQuestionList';
+$route['admin/diagnostics/delete-question/(:num)']    = 'diagnostics/deleteQuestion/$1';
+$route['admin/diagnostics/question-update']['post']  = 'diagnostics/questionUpdate';
+$route['admin/diagnostics/problem']                  = 'diagnostics/viewProblemList';
+$route['admin/diagnostics/delete-problem/(:num)']    = 'diagnostics/deleteProblem/$1';
+$route['admin/diagnostics/problem-update']['post']  = 'diagnostics/problemUpdate';
+$route['admin/diagnostics/inspection']                  = 'diagnostics/viewInspectionList';
+$route['admin/diagnostics/delete-inspection/(:num)']    = 'diagnostics/deleteInspection/$1';
+$route['admin/diagnostics/inspection-update']['post']  = 'diagnostics/inspectionUpdate';
+$route['admin/diagnostics/solution']                  = 'diagnostics/viewSolutionList';
+$route['admin/diagnostics/delete-solution/(:num)']    = 'diagnostics/deleteSolution/$1';
+$route['admin/diagnostics/solution-update']['post']  = 'diagnostics/solutionUpdate';
+$route['admin/diagnostics/create']           = 'diagnostics/create';
+$route['admin/diagnostics/update/(:num)']    = 'diagnostics/update/$1';
+$route['admin/diagnostics/read/(:num)']      = 'diagnostics/read/$1';
+$route['admin/diagnostics/create_action']    = 'diagnostics/create_action';
+$route['admin/diagnostics/update_action']    = 'diagnostics/update_action';
+$route['admin/diagnostics/delete/(:num)']    = 'diagnostics/delete/$1';
+$route['admin/diagnostics/solution/review']    = 'diagnostics/solutionReview/$1';

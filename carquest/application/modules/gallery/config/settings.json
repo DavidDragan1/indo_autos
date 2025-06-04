@@ -1,0 +1,15 @@
+{
+    "limit": "20",
+    "caption": "1",
+    "description": "1",
+    "thumb_width": "120",
+    "thumb_height": "80",
+    "medium_width": "220",
+    "medium_height": "150",
+    "large_width": "788",
+    "large_height": "650",
+    "watermark": "1",
+    "watermark_logo": "watermark.png",
+    "watermark_opacity": "0.3",
+    "position": "TL"
+}
